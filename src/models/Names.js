@@ -1,8 +1,8 @@
 // src/models/Names.js
 var m = require("mithril")
-const {cors,sparql,haldoc} = require("./Config.js")
+const {cors,hal,haldoc} = require("./Config.js")
 
-var hal = sparl+'?default-graph-uri=&query=';
+var halq = hal+'?default-graph-uri=&query=';
 
 var Names = {
   list: [],
@@ -15,10 +15,10 @@ var Names = {
      ?x <http://xmlns.com/foaf/0.1/name> ?name.
      ?name bif:contains "${this.current}"
     } limit 100`;
-    console.log("query:" + hal + query)
+    console.log("query:" + halq + query)
     return m.request({
         method: "GET",
-        url: encodeURI(cors_anywhere + hal + query),
+        url: encodeURI(cors + halq + query),
         // withCredentials: false,
         // headers: {'Access-Control-Allow-Origin': '*'},
       })

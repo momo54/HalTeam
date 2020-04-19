@@ -15,7 +15,7 @@ var Publis = {
           console.log(halurl);
           m.request({
               method: "GET",
-              url: encodeURI(cors_anywhere+halurl),
+              url: encodeURI(cors+halurl),
               headers: { 'Content-Type': 'text/plain; charset: utf-8;charset=UTF-8',
                 "Accept": "text/*"
                 },
@@ -49,7 +49,7 @@ var Publis = {
     var data={'query':query}
     m.request({
         method: "POST",
-        url: encodeURI(cors_anywhere + hal),
+        url: encodeURI(cors + hal),
         params: data,
         // withCredentials: false,
         // headers: {'Access-Control-Allow-Origin': '*'},

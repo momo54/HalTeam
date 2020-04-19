@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack src/index.js --output bin/app.js -d --watch",
+    "start": "webpack src/index.js --output dist/js/bundle.js -d --watch",
     "build": "webpack --mode production"
   },
   "keywords": [],
