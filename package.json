@@ -22,7 +22,7 @@
     "start": "webpack src/index.js --output bin/app.js -d --watch",
     "build": "webpack --mode production"
   },
-  "keywords": [HAL SPARQL],
+  "keywords": [],
   "author": "PM",
   "license": "MIT"
 }
