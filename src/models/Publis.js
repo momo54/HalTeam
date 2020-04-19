@@ -1,6 +1,6 @@
 // src/models/Names.js
 var m = require("mithril")
-const {cors,sparql,haldoc} = require("./Config.js")
+const {cors,hal,haldoc} = require("./Config.js")
 
 var Publis = {
   list: new Map(),
