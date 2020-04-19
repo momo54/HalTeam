@@ -1,8 +1,8 @@
 // src/models/Names.js
 var m = require("mithril")
+const {cors,sparql} = requires("./Config.js")
 
-var cors_anywhere = 'http://0.0.0.0:8080/';
-var hal = "http://sparql.archives-ouvertes.fr/sparql?default-graph-uri=&query=";
+var hal = sparl+'?default-graph-uri=&query=';
 
 var Names = {
   list: [],

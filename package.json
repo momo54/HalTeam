@@ -1,5 +1,5 @@
 {
-  "name": "hal-virtuoso",
+  "name": "HalTeam",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,9 +20,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack src/index.js --output bin/app.js -d --watch",
-     "build": "webpack --mode production"
+    "build": "webpack --mode production"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [HAL SPARQL],
+  "author": "PM",
+  "license": "MIT"
 }

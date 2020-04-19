@@ -1,10 +1,6 @@
 // src/models/Names.js
 var m = require("mithril")
-
-var cors_anywhere = 'http://0.0.0.0:8080/';
-var hal = "http://sparql.archives-ouvertes.fr/sparql";
-
-var haldoc= "https://hal.archives-ouvertes.fr/";
+const {cors,sparql,haldoc} = requires("./Config.js")
 
 var Publis = {
   list: new Map(),
