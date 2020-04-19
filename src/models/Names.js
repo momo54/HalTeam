@@ -1,6 +1,6 @@
 // src/models/Names.js
 var m = require("mithril")
-const {cors,sparql,haldoc} = requires("./Config.js")
+const {cors,sparql,haldoc} = require("./Config.js")
 
 var hal = sparl+'?default-graph-uri=&query=';
 
