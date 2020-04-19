@@ -1,0 +1,8 @@
+select ?s ?o ?f
+where {
+ ?s a foaf:Person .
+ ?s foaf:name ?o .
+ ?s foaf:member ?e .
+ ?e <http://www.w3.org/2004/02/skos/core#prefLabel> ?f .
+ ?o bif:contains "molli" .
+} limit 5

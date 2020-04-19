@@ -1,0 +1,62 @@
+
+Doc tout ça ...
+https://data.archives-ouvertes.fr/
+
+Mais qui est "molli" ??
+Bon finalement, cette requête semble fonctionner
+
+select distinct ?x
+where {
+ ?x <http://www.openarchives.org/ore/terms/aggregates> ?z.
+ ?x <http://xmlns.com/foaf/0.1/name> ?y.
+ ?y bif:contains "molli"
+} limit 100
+
+ok, i found:
+<https://data.archives-ouvertes.fr/author/pascal-molli>
+(with hala)
+
+-----8<--------------
+
+gimme all publication of <https://data.archives-ouvertes.fr/author/pascal-molli>:
+select *
+where {
+  ?paper <http://purl.org/dc/terms/bibliographicCitation> ?cit.
+  ?paper <http://purl.org/dc/terms/creator> ?o.
+  ?o <http://data.archives-ouvertes.fr/schema/person> ?x.
+  ?x <http://www.openarchives.org/ore/terms/isAggregatedBy> <https://data.archives-ouvertes.fr/author/pascal-molli>
+  FILTER NOT EXISTS {?paper <http://purl.org/dc/terms/isReplacedBy> ?any}
+}
+
+Not exitsts pour ne garder que les dernières version d'un papier...
+
+
+
+
+
+With Values, for unioning ?? -> seems to be case...
+
+select *
+where {
+  VALUES ?authors { <https://data.archives-ouvertes.fr/author/skaf-molli> <https://data.archives-ouvertes.fr/author/achour-mostefaoui> <https://data.archives-ouvertes.fr/author/pascal-molli> }
+  ?paper <http://purl.org/dc/terms/bibliographicCitation> ?cit.
+  ?paper <http://purl.org/dc/terms/creator> ?o.
+  ?o <http://data.archives-ouvertes.fr/schema/person> ?x.
+  ?x <http://www.openarchives.org/ore/terms/isAggregatedBy> ?authors
+  FILTER NOT EXISTS {?paper <http://purl.org/dc/terms/isReplacedBy> ?any}
+}
+
+Deal with dirty dates...
+
+select ?paper ?edate ?cit
+where {
+  VALUES ?authors { <https://data.archives-ouvertes.fr/author/skaf-molli> <https://data.archives-ouvertes.fr/author/achour-mostefaoui> <https://data.archives-ouvertes.fr/author/pascal-molli> }
+  ?paper <http://purl.org/dc/terms/bibliographicCitation> ?cit.
+  ?paper <http://purl.org/dc/terms/creator> ?o.
+  ?o <http://data.archives-ouvertes.fr/schema/person> ?x.
+  ?x <http://www.openarchives.org/ore/terms/isAggregatedBy> ?authors.
+  ?paper <http://purl.org/dc/terms/issued> ?date .
+  BIND(xsd:integer(REPLACE(str(?date), "^.*([12][0-9]{3}).*$", "$1")) AS ?edate)
+  FILTER NOT EXISTS {?paper <http://purl.org/dc/terms/isReplacedBy> ?any}
+  filter(?edate<2019 and ?edate>2008)
+}
